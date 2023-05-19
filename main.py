@@ -75,7 +75,7 @@ class Player(pygame.sprite.Sprite):
 
 player_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
-player = Player(100, int(screen_height / 2))
+player = Player(275, int(screen_height / 2))
 player_group.add(player)
 run = True
 
