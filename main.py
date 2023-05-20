@@ -1,6 +1,7 @@
-from pipes import *
+from pipes import Pipe
 from buttons import *
 from settings import *
+from difficult import diff
 
 bs_file = open("best_score.txt", "r+")
 best_score = int(bs_file.read())
@@ -75,13 +76,13 @@ class Player(pygame.sprite.Sprite):
 
 player_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
-player = Player(275, int(screen_height / 2))
+player = Player(100, int(screen_height / 2))
 player_group.add(player)
 run = True
 
 while run:
 
-
+	diff()
 	clock.tick(fps)
 	#3th layer
 	screen.blit(bg3, (bg_x3, 0))
@@ -119,31 +120,44 @@ while run:
 
 	if pygame.sprite.groupcollide(player_group, pipe_group, False, False) or player.rect.top < 0:
 		game_over = True
+		flying = False
+		fly_state = open('State.txt', 'w')
+		fly_state.write(str(score))
+		fly_state.close()
 
 	if player.rect.bottom >= 768:
 		game_over = True
 		flying = False
+		fly_state = open('State.txt', 'w')
+		fly_state.write(str(score))
+		fly_state.close()
 
 	if game_over == False and flying == False:
 		play.draw() == True
-
-
+		game_over = True
+		flying = False
+		fly_state = open('State.txt', 'w')
+		fly_state.write(str(score))
+		fly_state.close()
 
 	#GAME STARTED
 
 	if game_over == False and flying == True:
 		time_now = pygame.time.get_ticks()
+		fly_state = open('State.txt', 'w')
+		fly_state.write(str(score))
+		fly_state.close()
 
-		bg_x1 -= scroll_speed*0.75
+		bg_x1 -= (scroll_speed+diff())*0.75
 		if bg_x1 <= -1498:
 			bg_x1 = 0
-		bg_x2 -= scroll_speed * 0.50
+		bg_x2 -= (scroll_speed+diff()) * 0.50
 		if bg_x2 <= -1498:
 			bg_x2 = 0
-		bg_x3 -= scroll_speed * 0.25
+		bg_x3 -= (scroll_speed+diff()) * 0.25
 		if bg_x3 <= -1498:
 			bg_x3 = 0
-		ground_x1 -= scroll_speed*1.25
+		ground_x1 -= (scroll_speed+diff())*1.25
 		if ground_x1 <=-900:
 			ground_x1 = 0
 
@@ -164,11 +178,13 @@ while run:
 			best_score = best_score
 			flying = True
 
+
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			run = False
 		if event.type == pygame.MOUSEBUTTONDOWN and flying == False and game_over == False:
 			flying = True
+
 
 	if score > best_score:
 		best_score = score

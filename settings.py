@@ -1,7 +1,7 @@
 import pygame
 import random
 import time
-
+from difficult import diff
 
 #const
 

@@ -1,4 +1,5 @@
 from settings import pygame,scroll_speed,pipe_gap
+from difficult import diff
 
 
 class Pipe(pygame.sprite.Sprite):
@@ -10,11 +11,11 @@ class Pipe(pygame.sprite.Sprite):
 
 		if position == 1:
 			self.image = pygame.transform.flip(self.image, False, True)
-			self.rect.bottomleft = [x, y - int(pipe_gap/2)]
+			self.rect.bottomleft = [x, y - int(pipe_gap/(1 + (diff()/5)))]
 		if position == -1:
-			self.rect.topleft = [x, y + int(pipe_gap/2)]
+			self.rect.topleft = [x, y + int(pipe_gap/(1 + (diff()/5)))]
 
 	def update(self):
-		self.rect.x -= scroll_speed
+		self.rect.x -= scroll_speed + diff()
 		if self.rect.right < 0:
 			self.kill()
