@@ -134,8 +134,6 @@ while run:
 
 	if game_over == False and flying == False:
 		play.draw() == True
-		game_over = True
-		flying = False
 		fly_state = open('State.txt', 'w')
 		fly_state.write(str(score))
 		fly_state.close()
