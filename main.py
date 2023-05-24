@@ -3,17 +3,16 @@ from buttons import *
 from settings import *
 from difficult import diff
 
+pygame.init()
+font = pygame.font.Font('img/Pixeled.ttf', 40)
 bs_file = open("best_score.txt", "r+")
 best_score = int(bs_file.read())
-pygame.init()
 clock = pygame.time.Clock()
-pygame.display.set_caption('Flappy Woodland')
-pygame.display.set_icon(icon)
-font = pygame.font.Font('img/Pixeled.ttf', 40)
+
 flying = False
 game_over = False
-last_pipe = pygame.time.get_ticks() - pipe_frequency
 pass_pipe = False
+last_pipe = pygame.time.get_ticks() - pipe_frequency
 
 def draw_text(text, font, text_col, x, y):
 	img = font.render(text, True, text_col)
@@ -21,6 +20,7 @@ def draw_text(text, font, text_col, x, y):
 
 def Draw_score():
     draw_text(str(score), font, white, int(40), 20)
+
 
 def Draw_best():
     draw_text(str(best_score), font, white, int(40), 80)

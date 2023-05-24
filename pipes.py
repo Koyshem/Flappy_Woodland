@@ -1,5 +1,6 @@
-from settings import pygame,scroll_speed,pipe_gap
+from settings import *
 from difficult import diff
+
 
 
 class Pipe(pygame.sprite.Sprite):
