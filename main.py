@@ -133,7 +133,6 @@ while run:
 		fly_state.close()
 
 	if game_over == False and flying == False:
-		play.draw() == True
 		fly_state = open('State.txt', 'w')
 		fly_state.write(str(score))
 		fly_state.close()
@@ -176,11 +175,13 @@ while run:
 			best_score = best_score
 			flying = True
 
-
+	play.draw()
 	for event in pygame.event.get():
+
 		if event.type == pygame.QUIT:
 			run = False
-		if event.type == pygame.MOUSEBUTTONDOWN and flying == False and game_over == False:
+		if event.type == flying == False and game_over == False:
+
 			flying = True
 
 
