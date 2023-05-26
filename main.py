@@ -7,12 +7,19 @@ pygame.init()
 font = pygame.font.Font('img/Pixeled.ttf', 40)
 bs_file = open("best_score.txt", "r+")
 best_score = int(bs_file.read())
+bs_file.close()
 clock = pygame.time.Clock()
 
 flying = False
 game_over = False
 pass_pipe = False
 last_pipe = pygame.time.get_ticks() - pipe_frequency
+
+def Write_Best():
+	best_score = score
+	bs_file = open("best_score.txt", "w")
+	bs_file.write(str(best_score))
+	bs_file.close()
 
 def Fly_state():
 	fly_state = open('State.txt', 'w')
@@ -183,9 +190,7 @@ while run:
 		if reset.draw() == True:
 			score = 0
 			best_score = 0
-			bs_file = open("best_score.txt", "w")
-			bs_file.write(str(best_score))
-			bs_file.close()
+			Write_Best()
 
 	for event in pygame.event.get():
 
@@ -194,10 +199,8 @@ while run:
 
 	if score > best_score:
 		best_score = score
-		bs_file.seek(0)
-		bs_file.write(str(best_score))
+		Write_Best()
 
 	pygame.display.update()
 
 pygame.quit()
-bs_file.close()
