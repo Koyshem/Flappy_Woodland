@@ -1,4 +1,5 @@
 import pygame
+import os
 import random
 import time
 from difficult import diff
@@ -30,6 +31,7 @@ bg3 = pygame.image.load('img/bg3.png').convert_alpha()
 ground1_img = pygame.image.load('img/ground1.png').convert_alpha()
 restart_img = pygame.image.load('img/restart.png').convert_alpha()
 play_img = pygame.image.load('img/start.png').convert_alpha()
+reset_img = pygame.image.load('img/reset.png').convert_alpha()
 icon = pygame.image.load('img/bird1.png')
 
 pygame.display.set_caption('Flappy Woodland')

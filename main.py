@@ -14,6 +14,11 @@ game_over = False
 pass_pipe = False
 last_pipe = pygame.time.get_ticks() - pipe_frequency
 
+def Fly_state():
+	fly_state = open('State.txt', 'w')
+	fly_state.write(str(score))
+	fly_state.close()
+
 def draw_text(text, font, text_col, x, y):
 	img = font.render(text, True, text_col)
 	screen.blit(img, (x, y))
@@ -121,29 +126,30 @@ while run:
 	if pygame.sprite.groupcollide(player_group, pipe_group, False, False) or player.rect.top < 0:
 		game_over = True
 		flying = False
-		fly_state = open('State.txt', 'w')
-		fly_state.write(str(score))
-		fly_state.close()
+		Fly_state()
 
 	if player.rect.bottom >= 768:
 		game_over = True
 		flying = False
-		fly_state = open('State.txt', 'w')
-		fly_state.write(str(score))
-		fly_state.close()
+		Fly_state()
 
 	if game_over == False and flying == False:
-		fly_state = open('State.txt', 'w')
-		fly_state.write(str(score))
-		fly_state.close()
+		if play.draw()== True:
+			game_over = False
+			flying = True
+		if reset.draw()==True:
+			score = 0
+			best_score = 0
+			bs_file = open("best_score.txt", "w")
+			bs_file.write(str(best_score))
+			bs_file.close()
+		Fly_state()
 
 	#GAME STARTED
 
 	if game_over == False and flying == True:
 		time_now = pygame.time.get_ticks()
-		fly_state = open('State.txt', 'w')
-		fly_state.write(str(score))
-		fly_state.close()
+		Fly_state()
 
 		bg_x1 -= (scroll_speed+diff())*0.75
 		if bg_x1 <= -1498:
@@ -174,22 +180,22 @@ while run:
 			score = reset_game()
 			best_score = best_score
 			flying = True
+		if reset.draw() == True:
+			score = 0
+			best_score = 0
+			bs_file = open("best_score.txt", "w")
+			bs_file.write(str(best_score))
+			bs_file.close()
 
-	play.draw()
 	for event in pygame.event.get():
 
 		if event.type == pygame.QUIT:
 			run = False
-		if event.type == flying == False and game_over == False:
-
-			flying = True
-
 
 	if score > best_score:
 		best_score = score
 		bs_file.seek(0)
 		bs_file.write(str(best_score))
-
 
 	pygame.display.update()
 
