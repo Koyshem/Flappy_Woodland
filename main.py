@@ -128,6 +128,7 @@ while run:
 	#ground
 	screen.blit(ground1_img, (ground_x1, 668))
 	screen.blit(ground1_img, (ground_x1+900, 668))
+	screen.blit(fog, (fog_x1,0))
 	#game states
 
 	if pygame.sprite.groupcollide(player_group, pipe_group, False, False) or player.rect.top < 0:
@@ -170,6 +171,9 @@ while run:
 		ground_x1 -= (scroll_speed+diff())*1.25
 		if ground_x1 <=-900:
 			ground_x1 = 0
+		fog_x1 -=(scroll_speed+diff())
+		if fog_x1 <= -900:
+			fog_x1 = 5000
 
 		if time_now - last_pipe > pipe_frequency:
 			pipe_height = random.randint(-100, 100)
