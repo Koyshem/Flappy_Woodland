@@ -52,6 +52,6 @@ class Reset():
         screen.blit(self.image, (self.rect.x, self.rect.y))
         return action
 
-reset = Reset(screen_width // 2 - 150, screen_height // 2, reset_img)
+reset = Reset(screen_width // 1.2, screen_height // 25, reset_img)
 
 
