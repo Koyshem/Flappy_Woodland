@@ -1,7 +1,7 @@
 # Flappy_Woodland
 A simple game like Flappy Bird on PyGame)
 
-Implemented:
+Implemented: 
 -Start button
 -Restart button after losing
 -Record reset button
