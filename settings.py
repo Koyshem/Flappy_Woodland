@@ -20,11 +20,9 @@ bg_x1 = 0
 bg_x2 = 0
 bg_x3 = 0
 fog_x1 = 5000
-
-
+difficulty = 1
 
 #img
-
 
 bg1 = pygame.image.load('img/bg1.png').convert_alpha()
 bg2 = pygame.image.load('img/bg2.png').convert_alpha()
@@ -35,7 +33,5 @@ restart_img = pygame.image.load('img/restart.png').convert_alpha()
 play_img = pygame.image.load('img/start.png').convert_alpha()
 reset_img = pygame.image.load('img/reset.png').convert_alpha()
 icon = pygame.image.load('img/bird1.png')
-
 pygame.display.set_caption('Flappy Woodland')
 pygame.display.set_icon(icon)
-

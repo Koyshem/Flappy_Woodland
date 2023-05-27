@@ -1,5 +1,4 @@
 from settings import *
-difficulty = 1
 
 def diff():
     global difficulty

@@ -53,5 +53,3 @@ class Reset():
         return action
 
 reset = Reset(screen_width // 1.2, screen_height // 25, reset_img)
-
-
