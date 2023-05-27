@@ -21,5 +21,4 @@ Implemented:
 
 -Interfering Fog
 
-https://github.com/Koyshem/Flappy_Woodland/assets/99501085/59245888-8d16-4ca9-9bda-a0dfd5beafd3
-
+https://github.com/Koyshem/Flappy_Woodland/assets/99501085/0c2a940d-c469-457d-8f9a-ff6619aa41c0
